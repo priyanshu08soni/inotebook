@@ -2,7 +2,7 @@ const connectToMongo=require('./db')
 const express=require('express')
 connectToMongo();
 const app=express();
-const port=3000;
+const port=5000;
 //middleWare to use request.body to put a requent on json in thunder client.
 //content type application json.
 app.use(express.json())
