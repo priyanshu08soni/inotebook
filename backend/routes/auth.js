@@ -50,9 +50,8 @@ router.post('/createuser',[
 })
 // Authenticate a User using: Post "/api/auth/login".No login  requrired.
 router.post('/login',[
-    // body('name','enter a valid name').isLength({min:3}),
     body('email','enter a valid email').isEmail(),
-    body('password','password cannot be blanck.').exists(),
+    body('password','password cannot be blanck.').exists()
 ],async(req,res)=>{
      //If there are errors return Bad request and the errors.
      const errors=validationResult(req);
@@ -61,11 +60,11 @@ router.post('/login',[
      }
      const {email,password}=req.body;
      try {
-        let user=User.findOne({email});
+        let user= await User.findOne({email});
         if(!user){
             return res.status(400).json({errors:"Please try to login with correct credentials."});
         }
-        const passwordCompare=bcrypt.compare(password,user.password);
+        const passwordCompare= await bcrypt.compare(password,user.password);
         if(!passwordCompare){
             return res.status(400).json({errors:"Please try to login with correct credentials."});
         }
