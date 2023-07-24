@@ -1,5 +1,11 @@
 const mongoose=require('mongoose');
+const {Schema}=mongoose;
 const NotesSchema=new Schema({
+    user:{
+        //connecting Notes,User,and notes.
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'user'
+    },
     title:{
         type:String,
         required:true

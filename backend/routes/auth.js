@@ -4,7 +4,7 @@ const router=express.Router();
 const {body,validationResult}=require('express-validator');
 const bcrypt= require('bcryptjs');
 var jwt=require('jsonwebtoken');
-var fetchuser=require('../middleware/fetchuser');
+const fetchuser=require('../middleware/fetchuser');
 const JWT_SECRET='PriyanshuISaMale';
 //Route 1: Create a User using :POST "/api/auth/createuser". Doesn't require Auth.
 router.post('/createuser',[
