@@ -1,31 +1,30 @@
-
-import './App.css';
-import{BrowserRouter as Router,Route,Switch}from "react-router-dom";
-import Navbar from './components/Navbar';
-import { Home } from './components/Home';
-import { About } from './components/About';
-import NoteState from './context/notes/NoteState';
-import { Alert } from './components/Alert';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { Home } from "./components/Home";
+import { About } from "./components/About";
+import NoteState from "./context/notes/NoteState";
+import { Alert } from "./components/Alert";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
 function App() {
   return (
     <>
-      <NoteState>       
+      <NoteState>
         <Router>
-          <Navbar/>
+          <Navbar />
           <Alert message="This is a amazing course" />
-            <div className="container">
-              <Switch>
-                <Route key={"home"} exact path="/" ><Home/></Route>
-                <Route key={"about"} exact path="/about" ><About/></Route>
-                <Route key={"login"} exact path="/login" ><Login/></Route>
-                <Route key={"signup"} exact path="/signup" ><SignUp/></Route>
-              </Switch>
-            </div>
+          <div className="container">
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<SignUp />} />
+            </Routes>
+          </div>
         </Router>
       </NoteState>
-      </>
+    </>
   );
 }
 

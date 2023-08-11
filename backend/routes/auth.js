@@ -58,20 +58,20 @@ router.post('/login',[
     //If there are errors return Bad request and the errors.
     const errors=validationResult(req);
     if(!errors.isEmpty()){
-        success=false;
+   
         return res.status(400).json({success,errors: errors.array()});
     }
     const {email,password}=req.body;
     try {
         let user= await User.findOne({email});
         if(!user){
-            success=false;
+          
             return res.status(400).json({success,errors:"Please try to login with correct credentials."});
         }
         const passwordCompare= await bcrypt.compare(password,user.password);
         success=false;
         if(!passwordCompare){
-            success=false;
+            
             return res.status(400).json({success,errors:"Please try to login with correct credentials."});
         }
         const data={

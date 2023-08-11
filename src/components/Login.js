@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [credentials,setCredentials]=useState({email:"",password:""})
-  let history=useHistory();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     fetch("http://localhost:5000/api/auth/login");
@@ -20,12 +21,13 @@ const Login = () => {
     if(json.success){
       //Save the auth token and redirect to login.
       localStorage.setItem('token',json.authtoken)
-      history.push("/");
+      
     }else{
         alert("Invalid Credentials")
     }
   };
   const onChange = (e) => {
+    
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
@@ -58,7 +60,7 @@ const Login = () => {
             onChange={onChange}
           />
         </div>
-        <button type="submit" className="btn btn-primary" >
+        <button type="submit" className="btn btn-primary" onClick={() => navigate("/")}>
           Submit
         </button>
       </form>

@@ -29,15 +29,15 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className={`nav-link ${location.pathname==="/about"?"active":""}`} to="/about">
+                <Link className={`nav-link ${location.pathname==="/about"?"active":""}`}  to="/about">
                   About
                 </Link>
               </li>
               
             </ul>
             <form className="d-flex" role="search">
-              <Link to="/login" className="btn btn-primary mx-2" role="button">Login</Link>
-              <Link to="/signup" className="btn btn-primary mx-2" role="button">Signup</Link>
+              <Link to="/login" className="btn btn-primary mx-2" role="button" >Login</Link>
+              <Link to="/signup" className="btn btn-primary mx-2" role="button" >Signup</Link>
             </form>
           </div>
         </div>
