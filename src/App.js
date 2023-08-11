@@ -1,6 +1,6 @@
 
 import './App.css';
-import{BrowserRouter as Router,Route,Routes}from "react-router-dom";
+import{BrowserRouter as Router,Route,Switch}from "react-router-dom";
 import Navbar from './components/Navbar';
 import { Home } from './components/Home';
 import { About } from './components/About';
@@ -16,12 +16,12 @@ function App() {
           <Navbar/>
           <Alert message="This is a amazing course" />
             <div className="container">
-              <Routes>
-                <Route exact path="/" element={<Home/>}></Route>
-                <Route exact path="/about" element={<About/>}></Route>
-                <Route exact path="/login" element={<Login/>}></Route>
-                <Route exact path="/signup" element={<SignUp/>}></Route>
-              </Routes>
+              <Switch>
+                <Route key={"home"} exact path="/" ><Home/></Route>
+                <Route key={"about"} exact path="/about" ><About/></Route>
+                <Route key={"login"} exact path="/login" ><Login/></Route>
+                <Route key={"signup"} exact path="/signup" ><SignUp/></Route>
+              </Switch>
             </div>
         </Router>
       </NoteState>
