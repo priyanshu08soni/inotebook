@@ -1,39 +1,37 @@
-import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route
-} from "react-router-dom";
-import Navbar from './components/Navbar';
-import { Home } from './components/Home';
-import About from './components/About';
-import NoteState from './context/notes/NoteState';
-import { Alert } from './components/Alert';
-import Signup from './components/Signup';
-import Login from './components/Login';
-
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { Home } from "./components/Home";
+import  About  from "./components/About";
+import NoteState from "./context/notes/NoteState";
+import Alert from "./components/Alert";
+import Login from "./components/Login";
+import SignUp from "./components/SignUp";
+import { useState } from "react";
 function App() {
+  const [alert, setAlert] = useState(null);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    },1500);
+  };
   return (
     <>
       <NoteState>
         <Router>
           <Navbar />
-          <Alert message="This is amazing React course" />
+          <Alert alert={alert}/>
           <div className="container">
-            <Switch>
-              <Route exact path="/">
-                <Home />
-              </Route>
-              <Route exact path="/about">
-                <About />
-              </Route>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/signup">
-                <Signup />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route exact path="/" element={<Home showAlert={showAlert}/>} />
+              <Route path="/about" element={<About />} />
+              <Route path="/login" element={<Login showAlert={showAlert}/>} />
+              <Route path="/signup" element={<SignUp showAlert={showAlert}/>} />
+            </Routes>
           </div>
         </Router>
       </NoteState>
